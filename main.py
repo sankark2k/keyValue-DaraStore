@@ -93,3 +93,36 @@ def modify(key,value):
             l.append(b[1])
             json[key]=l
 
+# Define a function for the thread
+exitFlag = 0
+
+class myThread (threading.Thread):
+   def __init__(self, threadID, name, counter):
+      threading.Thread.__init__(self)
+      self.threadID = threadID
+      self.name = name
+      self.counter = counter
+   def run(self):
+      print ("Starting " + self.name)
+      print_time(self.name, 5, self.counter)
+      print ("Exiting " + self.name)
+
+def print_time(threadName, counter, delay):
+   while counter:
+      if exitFlag:
+         threadName.exit()
+      time.sleep(delay)
+      print ("%s: %s" % (threadName, time.ctime(time.time())))
+      counter -= 1
+
+# Create new threads
+thread1 = myThread(1, "create", 1)
+thread2 = myThread(2, "read", 2)
+thread3 = myThread(3, "delete", 3)
+
+# Start new Threads
+thread1.start()
+thread2.start()
+thread3.start()
+
+print ("Exiting Main Thread")
