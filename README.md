@@ -2,4 +2,5 @@
 
 Here I created a file based key value data store
 
-please read the problem statement and then run the code
+Go through the accessing.py file that are attached here with in order to understand clearly how 
+the code works and how to perform operations in this. 
